@@ -237,7 +237,7 @@ class StoreClient:
             returnElements (str): String describing data to get on of [all, id-only, header-only, data-only, station-location-only
                                                                        latest-change-only, requested]
         Returns:
-            witsml.wellbores: wellbores
+            witsml.wellbores: wellbores a collection of wellbore
         
         Raises:
             StoreException: If the soap server replies with an error
@@ -254,3 +254,158 @@ class StoreClient:
                                                                     )
     
         return _parse_reply(reply_wellbores)
+
+    def get_tubulars(self,
+                        q_tubular: witsml.obj_tubular,
+                        returnElements: str = 'id-only') -> witsml.tubulars:
+        '''Get tubulars from a witsml store server
+
+        The default is only to return id-only, change to all when you know what tubular to get.
+        Pass an empty tubular with returnElements id-only to get all by id.
+
+        Args:
+            q_tubular (witsml.obj_tubular): A query tubular specifing objects to return
+            returnElements (str): String describing data to get on of [all, id-only, header-only, data-only, station-location-only
+                                                                       latest-change-only, requested]
+        Returns:
+            witsml.tubulars: tubulars, a collection of tubular
+
+        Raises:
+            StoreException: If the soap server replies with an error
+            pyxb.exception: If the reply is empty or the document fails to validate a pyxb exception is raised
+        '''
+
+        q_tubulars = witsml.tubulars(version=witsml.__version__)
+
+        q_tubulars.append(q_tubular)
+
+        reply_tubular = self.soap_client.service.WMLS_GetFromStore('tubular',
+                                                                q_tubulars.toxml(),
+                                                                OptionsIn=f'returnElements={returnElements}'
+                                                                )
+
+        return _parse_reply(reply_tubular)
+
+    def get_fluidsReports(self,
+                        q_fluidsReport: witsml.obj_fluidsReport,
+                        returnElements: str = 'id-only') -> witsml.fluidsReports:
+        '''Get fluidsReports from a witsml store server
+
+        The default is only to return id-only, change to all when you know what fluidsReport to get.
+        Pass an empty fluidsReport with returnElements id-only to get all by id.
+
+        Args:
+            q_traj (witsml.obj_fluidsReport): A query fluidsReport specifing objects to return
+            returnElements (str): String describing data to get on of [all, id-only, header-only, data-only, station-location-only
+                                                                       latest-change-only, requested]
+        Returns:
+            witsml.fluidsReports: fluidsReports, a collection of fluidsReport
+
+        Raises:
+            StoreException: If the soap server replies with an error
+            pyxb.exception: If the reply is empty or the document fails to validate a pyxb exception is raised
+        '''
+
+        q_fluidsReports = witsml.fluidsReports(version=witsml.__version__)
+
+        q_fluidsReports.append(q_fluidsReport)
+
+        reply_fluidsReport = self.soap_client.service.WMLS_GetFromStore('fluidsReport',
+                                                                q_fluidsReports.toxml(),
+                                                                OptionsIn=f'returnElements={returnElements}'
+                                                                )
+
+        return _parse_reply(reply_fluidsReport)
+
+    def get_drillReports(self,
+                        q_drillReport: witsml.obj_drillReport,
+                        returnElements: str = 'id-only') -> witsml.drillReports:
+        '''Get drillReports from a witsml store server
+
+        The default is only to return id-only, change to all when you know what drillReport to get.
+        Pass an empty drillReport with returnElements id-only to get all by id.
+
+        Args:
+            q_traj (witsml.obj_drillReport): A query drillReport specifing objects to return
+            returnElements (str): String describing data to get on of [all, id-only, header-only, data-only, station-location-only
+                                                                       latest-change-only, requested]
+        Returns:
+            witsml.drillReports: drillReports, a collection of drillReport
+
+        Raises:
+            StoreException: If the soap server replies with an error
+            pyxb.exception: If the reply is empty or the document fails to validate a pyxb exception is raised
+        '''
+
+        q_drillReports = witsml.drillReports(version=witsml.__version__)
+
+        q_drillReports.append(q_drillReport)
+
+        reply_drillReport = self.soap_client.service.WMLS_GetFromStore('drillReport',
+                                                                q_drillReports.toxml(),
+                                                                OptionsIn=f'returnElements={returnElements}'
+                                                                )
+
+        return _parse_reply(reply_drillReport)
+
+    def get_wbGeometrys(self,
+                        q_wbGeometry: witsml.obj_wbGeometry,
+                        returnElements: str = 'id-only') -> witsml.wbGeometrys:
+        '''Get wbGeometrys from a witsml store server
+
+        The default is only to return id-only, change to all when you know what wbGeometry to get.
+        Pass an empty wbGeometry with returnElements id-only to get all by id.
+
+        Args:
+            q_wbGeometry (witsml.obj_wbGeometry): A query wbGeometry specifing objects to return
+            returnElements (str): String describing data to get on of [all, id-only, header-only, data-only, station-location-only
+                                                                       latest-change-only, requested]
+        Returns:
+            witsml.wbGeometrys: wbGeometrys, a collection of wbGeometry
+
+        Raises:
+            StoreException: If the soap server replies with an error
+            pyxb.exception: If the reply is empty or the document fails to validate a pyxb exception is raised
+        '''
+
+        q_wbGeometrys = witsml.wbGeometrys(version=witsml.__version__)
+
+        q_wbGeometrys.append(q_wbGeometry)
+
+        reply_wbGeometry = self.soap_client.service.WMLS_GetFromStore('wbGeometry',
+                                                                q_wbGeometrys.toxml(),
+                                                                OptionsIn=f'returnElements={returnElements}'
+                                                                )
+
+        return _parse_reply(reply_wbGeometry)
+
+    def get_formationMarkers(self,
+                        q_formationMarker: witsml.obj_formationMarker,
+                        returnElements: str = 'id-only') -> witsml.formationMarkers:
+        '''Get formationMarkers from a witsml store server
+
+        The default is only to return id-only, change to all when you know what formationMarker to get.
+        Pass an empty formationMarker with returnElements id-only to get all by id.
+
+        Args:
+            q_traj (witsml.obj_formationMarker): A query formationMarker specifing objects to return
+            returnElements (str): String describing data to get on of [all, id-only, header-only, data-only, station-location-only
+                                                                       latest-change-only, requested]
+        Returns:
+            witsml.formationMarkers: formationMarkers, a collection of formationMarker
+
+        Raises:
+            StoreException: If the soap server replies with an error
+            pyxb.exception: If the reply is empty or the document fails to validate a pyxb exception is raised
+        '''
+
+        q_formationMarkers = witsml.formationMarkers(version=witsml.__version__)
+
+        q_formationMarkers.append(q_formationMarker)
+
+        reply_formationMarker = self.soap_client.service.WMLS_GetFromStore('formationMarker',
+                                                                q_formationMarkers.toxml(),
+                                                                OptionsIn=f'returnElements={returnElements}'
+                                                                )
+
+        return _parse_reply(reply_formationMarker)
